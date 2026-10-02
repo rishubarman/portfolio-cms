@@ -1,45 +1,36 @@
-Portfolio CMS
+# Portfolio CMS
 
-A full-stack personal portfolio website with a custom-built Content
-Management System (CMS), REST API, admin dashboard, authentication,
-PostgreSQL database, media uploads, and contact email notifications.
+A full-stack personal portfolio website with a custom-built Content Management System (CMS), REST API, admin dashboard, authentication, PostgreSQL database, media uploads, and contact email notifications.
 
-The entire application is maintained in one GitHub repository.
+The entire application is maintained in **one GitHub repository**.
 
-🚀 Overview
+---
 
-Portfolio CMS is a custom full-stack portfolio platform built from
-scratch.
+## 🚀 Overview
+
+Portfolio CMS is a custom full-stack portfolio platform built from scratch.
 
 It combines:
 
-A public portfolio website
+- A public portfolio website
+- A custom admin CMS
+- Spring Boot REST APIs
+- PostgreSQL database
+- JWT authentication
+- Refresh-token authentication
+- Media/file uploads
+- Contact form with database storage
+- Email notifications
+- SEO configuration
+- Dynamic content management
 
-A custom admin CMS
+The CMS allows portfolio content to be managed without directly modifying frontend source code.
 
-Spring Boot REST APIs
+---
 
-PostgreSQL database
+## 🏗️ Architecture
 
-JWT authentication
-
-Refresh-token authentication
-
-Media/file uploads
-
-Contact form with database storage
-
-Email notifications
-
-SEO configuration
-
-Dynamic content management
-
-The CMS allows portfolio content to be managed without directly
-modifying frontend source code.
-
-🏗️ Architecture
-
+```text
                          ┌──────────────────────┐
                          │   Public Portfolio   │
                          │      Next.js         │
@@ -65,170 +56,129 @@ modifying frontend source code.
                          │     Admin CMS        │
                          │      Next.js         │
                          └──────────────────────┘
+```
 
-🛠️ Tech Stack
+---
 
-Frontend
+## 🛠️ Tech Stack
 
-Next.js 16
+### Frontend
 
-React
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+- Next.js App Router
+- ESLint
 
-TypeScript
+### Backend
 
-Tailwind CSS
+- Java 26
+- Spring Boot 4.1.1
+- Spring Security
+- Spring Data JPA
+- Hibernate
+- JWT
+- Jakarta Validation
+- Maven
 
-Next.js App Router
+### Database
 
-ESLint
+- PostgreSQL 17
 
-Backend
+### Authentication
 
-Java 26
+- JWT Access Tokens
+- JWT Refresh Tokens
+- BCrypt password hashing
+- Protected admin APIs
+- Automatic token refresh
 
-Spring Boot 4.1.1
+### Email
 
-Spring Security
+- Spring Boot Mail
+- SMTP
+- Gmail App Password
 
-Spring Data JPA
+### Development Tools
 
-Hibernate
+- IntelliJ IDEA
+- Git
+- GitHub
+- PostgreSQL
+- Maven
+- npm
 
-JWT
+---
 
-Jakarta Validation
+## ✨ Features
 
-Maven
+### Public Portfolio
 
-Database
+- Home
+- About
+- Skills
+- Services
+- Experience
+- Projects
+- Testimonials
+- Blog
+- Blog details
+- Contact form
+- Responsive layout
+- SEO metadata
 
-PostgreSQL 17
-
-Authentication
-
-JWT Access Tokens
-
-JWT Refresh Tokens
-
-BCrypt password hashing
-
-Protected admin APIs
-
-Automatic token refresh
-
-Email
-
-Spring Boot Mail
-
-SMTP
-
-Gmail App Password
-
-Development Tools
-
-IntelliJ IDEA
-
-Git
-
-GitHub
-
-PostgreSQL
-
-Maven
-
-npm
-
-✨ Features
-
-Public Portfolio
-
-Home
-
-About
-
-Skills
-
-Services
-
-Experience
-
-Projects
-
-Testimonials
-
-Blog
-
-Blog details
-
-Contact form
-
-Responsive layout
-
-SEO metadata
-
-Custom CMS
+### Custom CMS
 
 Admin dashboard with management pages for:
 
-About
+- About
+- Skills
+- Projects
+- Blogs
+- Experience
+- Testimonials
+- Services
+- Contacts
+- Media
 
-Skills
+### Authentication
 
-Projects
+- Admin login
+- JWT access token
+- Refresh token
+- Automatic frontend token refresh
+- Protected CMS routes
+- Logout functionality
 
-Blogs
-
-Experience
-
-Testimonials
-
-Services
-
-Contacts
-
-Media
-
-Authentication
-
-Admin login
-
-JWT access token
-
-Refresh token
-
-Automatic frontend token refresh
-
-Protected CMS routes
-
-Logout functionality
-
-Contact System
+### Contact System
 
 The contact form follows this flow:
 
+```text
 Portfolio Contact Form
-↓
+        ↓
 Spring Boot API
-↓
+        ↓
 PostgreSQL
-↓
+        ↓
 Email Notification
+```
 
-Submitted contact messages are stored in PostgreSQL and an email
-notification is sent to the configured administrator email.
+Submitted contact messages are stored in PostgreSQL and an email notification is sent to the configured administrator email.
 
-Media
+### Media
 
-Image upload
+- Image upload
+- File storage
+- Public upload URLs
+- Media management through the CMS
 
-File storage
+---
 
-Public upload URLs
+## 📂 Project Structure
 
-Media management through the CMS
-
-📂 Project Structure
-
+```text
 portfolio-cms/
 │
 ├── frontend/
@@ -246,12 +196,15 @@ portfolio-cms/
 │   │       │   ├── testimonials/
 │   │       │   ├── login/
 │   │       │   └── page.tsx
+│   │       │
 │   │       ├── blog/
 │   │       │   └── [slug]/
+│   │       │
 │   │       ├── layout.tsx
 │   │       ├── page.tsx
 │   │       ├── robots.ts
 │   │       └── sitemap.ts
+│   │
 │   ├── lib/
 │   │   └── api.ts
 │   ├── public/
@@ -278,6 +231,7 @@ portfolio-cms/
 │       │       ├── skill/
 │       │       ├── testimonial/
 │       │       └── user/
+│       │
 │       └── resources/
 │           └── application.properties
 │
@@ -285,99 +239,163 @@ portfolio-cms/
 ├── pom.xml
 ├── README.md
 └── .gitignore
+```
 
-🔐 Authentication
+---
+
+## 🔐 Authentication
 
 The admin CMS uses JWT-based authentication.
 
-Login
+### Login
 
+```http
 POST /api/auth/login
+```
 
 Request:
 
+```json
 {
-"email": "admin@portfolio.com",
-"password": "your-password"
+  "email": "admin@portfolio.com",
+  "password": "your-password"
 }
+```
 
 Response:
 
+```json
 {
-"token": "access-token",
-"refreshToken": "refresh-token"
+  "token": "access-token",
+  "refreshToken": "refresh-token"
 }
+```
 
-Refresh Token
+### Refresh Token
 
+```http
 POST /api/auth/refresh
+```
 
 Request:
 
+```json
 {
-"refreshToken": "your-refresh-token"
+  "refreshToken": "your-refresh-token"
 }
+```
 
 Protected requests use:
 
+```http
 Authorization: Bearer <access-token>
+```
 
-🌐 REST API
+---
 
-Area
+## 🌐 REST API
 
-Endpoints
+### Health
 
-Health
-
+```http
 GET /api/health
+```
 
-Auth
+### Authentication
 
-POST /api/auth/login, POST /api/auth/refresh
+```http
+POST /api/auth/login
+POST /api/auth/refresh
+```
 
-About
+### About
 
-GET/POST /api/about, PUT/DELETE /api/about/{id}
+```http
+GET    /api/about
+POST   /api/about
+PUT    /api/about/{id}
+DELETE /api/about/{id}
+```
 
-Skills
+### Skills
 
-GET/POST /api/skills, PUT/DELETE /api/skills/{id}
+```http
+GET    /api/skills
+POST   /api/skills
+PUT    /api/skills/{id}
+DELETE /api/skills/{id}
+```
 
-Projects
+### Projects
 
-GET/POST /api/projects, PUT/DELETE /api/projects/{id}
+```http
+GET    /api/projects
+POST   /api/projects
+PUT    /api/projects/{id}
+DELETE /api/projects/{id}
+```
 
-Blogs
+### Blogs
 
-GET/POST /api/blogs, GET /api/blogs/slug/{slug}, PUT/DELETE /api/blogs/{id}
+```http
+GET    /api/blogs
+GET    /api/blogs/slug/{slug}
+POST   /api/blogs
+PUT    /api/blogs/{id}
+DELETE /api/blogs/{id}
+```
 
-Experience
+### Experience
 
-GET/POST /api/experience, PUT/DELETE /api/experience/{id}
+```http
+GET    /api/experience
+POST   /api/experience
+PUT    /api/experience/{id}
+DELETE /api/experience/{id}
+```
 
-Testimonials
+### Testimonials
 
-GET/POST /api/testimonials, PUT/DELETE /api/testimonials/{id}
+```http
+GET    /api/testimonials
+POST   /api/testimonials
+PUT    /api/testimonials/{id}
+DELETE /api/testimonials/{id}
+```
 
-Services
+### Services
 
-GET/POST /api/services, PUT/DELETE /api/services/{id}
+```http
+GET    /api/services
+POST   /api/services
+PUT    /api/services/{id}
+DELETE /api/services/{id}
+```
 
-Contact
+### Contact
 
-POST/GET /api/contacts, PUT/DELETE /api/contacts/{id}
+```http
+POST   /api/contacts
+GET    /api/contacts
+PUT    /api/contacts/{id}
+DELETE /api/contacts/{id}
+```
 
-Media
+### Media
 
+```http
 POST /api/upload/image
+```
 
-🗄️ Database
+---
+
+## 🗄️ Database
 
 The application uses PostgreSQL.
 
 Main entities:
 
+```text
 users
 about
 skills
@@ -388,245 +406,321 @@ testimonials
 services
 contacts
 media
+```
 
-⚙️ Environment Variables
+---
 
-Backend
+## ⚙️ Environment Variables
 
+### Backend
+
+```text
 JWT_SECRET
 MAIL_USERNAME
 MAIL_PASSWORD
+```
 
 Example:
 
+```text
 JWT_SECRET=your-base64-secret
 MAIL_USERNAME=your-email@gmail.com
 MAIL_PASSWORD=your-app-password
+```
 
-Frontend
+These values should **never be committed to GitHub**.
+
+### Frontend
 
 Create:
 
+```text
 frontend/.env.local
+```
 
+Example:
+
+```env
 NEXT_PUBLIC_API_URL=http://localhost:8080
+```
 
-Never commit secrets or passwords to GitHub.
+---
 
-🚀 Local Development
+## 🚀 Local Development
 
-1. Clone
+### 1. Clone the Repository
 
+```bash
 git clone <your-github-repository-url>
 cd portfolio-cms
+```
 
-2. Database
+### 2. Configure PostgreSQL
 
+Create the database:
+
+```sql
 CREATE DATABASE portfolio_cms;
+```
+
+Configure the database in:
+
+```text
+src/main/resources/application.properties
+```
+
+Example:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/portfolio_cms
+spring.datasource.username=your-username
+spring.datasource.password=
+```
+
+### 3. Configure Environment Variables
 
 Configure:
 
-src/main/resources/application.properties
+```text
+JWT_SECRET
+MAIL_USERNAME
+MAIL_PASSWORD
+```
 
-3. Backend
+### 4. Start the Backend
 
+From the project root:
+
+```bash
 ./mvnw spring-boot:run
+```
+
+Or run `PortfolioCmsApplication` from IntelliJ IDEA.
 
 Backend:
 
+```text
 http://localhost:8080
+```
 
-4. Frontend
+### 5. Start the Frontend
 
+Open another terminal:
+
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
 Frontend:
 
+```text
 http://localhost:3000
+```
 
-👨‍💻 Admin CMS
+---
+
+## 👨‍💻 Admin CMS
 
 Admin dashboard:
 
+```text
 http://localhost:3000/admin
+```
 
-Management sections:
+The CMS provides management interfaces for:
 
-About
+- About
+- Skills
+- Projects
+- Blogs
+- Experience
+- Testimonials
+- Services
+- Contacts
+- Media
 
-Skills
+Admin authentication is handled through JWT access and refresh tokens.
 
-Projects
+---
 
-Blogs
+## 📧 Contact Email System
 
-Experience
+When a visitor submits the contact form:
 
-Testimonials
-
-Services
-
-Contacts
-
-Media
-
-📧 Contact Email System
-
+```text
 Visitor
-↓
+   ↓
 Contact Form
-↓
+   ↓
 POST /api/contacts
-↓
+   ↓
 PostgreSQL
-↓
+   ↓
 Email Notification
+```
 
-The message is stored in PostgreSQL and an email notification is sent to
-the configured administrator email.
+The message is stored in PostgreSQL and an email notification is sent to the configured administrator email.
 
-🖼️ Media Uploads
+---
+
+## 🖼️ Media Uploads
+
+The CMS supports image uploads.
 
 Uploaded files are stored in:
 
+```text
 uploads/
+```
 
-They are exposed through:
+Uploaded files are exposed through:
 
+```text
 /uploads/**
+```
 
-🔒 Security
+---
+
+## 🔒 Security
 
 The application includes:
 
-Spring Security
+- Spring Security
+- JWT authentication
+- Refresh tokens
+- BCrypt password hashing
+- Protected admin APIs
+- Public read-only portfolio APIs
+- Protected CMS modification APIs
+- Environment variables for sensitive credentials
+- CORS configuration
+- Request validation
+- File upload size limits
 
-JWT authentication
+Sensitive values such as JWT secrets and email credentials are not stored directly in the source code.
 
-Refresh tokens
+---
 
-BCrypt password hashing
+## 🔎 SEO
 
-Protected admin APIs
+The Next.js frontend includes SEO configuration.
 
-Public read-only portfolio APIs
+The application provides:
 
-Protected CMS modification APIs
+- Page title
+- Meta description
+- Keywords
+- Author metadata
+- Robots configuration
+- Sitemap
 
-Environment variables for sensitive credentials
+### Robots
 
-CORS configuration
-
-Request validation
-
-File upload size limits
-
-🔎 SEO
-
-The Next.js frontend includes:
-
-Page title
-
-Meta description
-
-Keywords
-
-Author metadata
-
-Robots configuration
-
-Sitemap
-
+```text
 /robots.txt
+```
+
+### Sitemap
+
+```text
 /sitemap.xml
+```
 
-The final production domain should be configured before deployment.
+The final production domain should be configured in the SEO files before deployment.
 
-🧪 Testing & Verification
+---
 
-Backend Health
+## 🧪 Testing & Verification
 
+The main application flows have been tested during development.
+
+### Backend Health
+
+```http
 GET /api/health
+```
 
-Expected:
+Expected response:
 
+```json
 {
-"application": "Portfolio CMS",
-"message": "Backend is running successfully",
-"status": "UP"
+  "application": "Portfolio CMS",
+  "message": "Backend is running successfully",
+  "status": "UP"
 }
+```
 
-Authentication
-
-Verified:
-
-Admin login
-
-Access token generation
-
-Refresh token generation
-
-Access token refresh
-
-Protected API access
-
-Logout
-
-Login after logout
-
-Contact System
+### Authentication
 
 Verified:
 
-Contact form submission
+- Admin login
+- Access token generation
+- Refresh token generation
+- Access token refresh
+- Protected API access
+- Logout
+- Login after logout
 
-Database storage
-
-Email notification
-
-Successful frontend response
-
-Frontend
+### Contact System
 
 Verified:
 
-Next.js production build
+- Contact form submission
+- Database storage
+- Email notification
+- Successful frontend response
 
-TypeScript compilation
+### Frontend
 
-Admin routes
+Verified:
 
-Public portfolio routes
+- Next.js production build
+- TypeScript compilation
+- Admin routes
+- Public portfolio routes
+- API integration
 
-API integration
+---
 
-🏗️ Build
+## 🏗️ Build
 
-Backend
+### Backend
 
+```bash
 ./mvnw clean package
+```
 
-Output:
+The generated JAR file will be available under:
 
+```text
 target/
+```
 
-Frontend
+### Frontend
 
+```bash
 cd frontend
 npm run build
+```
 
-Production start:
+To start the production frontend:
 
+```bash
 npm start
+```
 
-🌍 Deployment
+---
 
-The application can be deployed using separate hosting services for the
-frontend, backend, and PostgreSQL database while maintaining a single
-GitHub repository.
+## 🌍 Deployment
 
+The application can be deployed using separate hosting services for the frontend, backend, and PostgreSQL database while maintaining a single GitHub repository.
+
+Typical deployment architecture:
+
+```text
                          Internet
                             │
               ┌─────────────┴─────────────┐
@@ -638,97 +732,77 @@ GitHub repository.
                             │
                             ▼
                        PostgreSQL
+```
+
+### Production Configuration
 
 Before deployment:
 
-Configure production environment variables.
+- Configure production environment variables.
+- Configure the production PostgreSQL database.
+- Configure the production frontend API URL.
+- Configure production CORS.
+- Configure SMTP credentials.
+- Configure the final domain in SEO files.
+- Use a secure JWT secret.
+- Configure persistent media storage if required by the hosting platform.
+- Disable development-only configuration.
 
-Configure the production PostgreSQL database.
+---
 
-Configure the production frontend API URL.
+## 📈 Project Goals
 
-Configure production CORS.
+The project was developed to demonstrate practical full-stack software engineering skills, including:
 
-Configure SMTP credentials.
+- Java development
+- Spring Boot
+- REST API development
+- Spring Security
+- JWT authentication
+- PostgreSQL
+- JPA/Hibernate
+- React/Next.js
+- TypeScript
+- Tailwind CSS
+- CRUD application development
+- CMS development
+- File upload handling
+- Email integration
+- SEO
+- Git/GitHub
+- Full-stack application architecture
 
-Configure the final domain in SEO files.
+---
 
-Use a secure JWT secret.
+## 📌 Project Highlights
 
-Configure persistent media storage if required.
+### Full-Stack Application
 
-Disable development-only configuration.
+The project combines frontend, backend, database, authentication, CMS, and external email functionality into a complete application.
 
-📈 Project Goals
+### Custom CMS
 
-This project demonstrates practical full-stack software engineering
-skills:
+The CMS was developed specifically for the portfolio rather than relying on an external CMS platform.
 
-Java
+### REST Architecture
 
-Spring Boot
+The frontend communicates with the Spring Boot backend through REST APIs.
 
-REST API development
+### Secure Authentication
 
-Spring Security
+The admin panel uses JWT access tokens and refresh tokens for authenticated operations.
 
-JWT authentication
+### Dynamic Content
 
-PostgreSQL
+Portfolio content can be managed through the CMS and retrieved dynamically by the public website.
 
-JPA/Hibernate
+---
 
-React/Next.js
+## 📁 Repository Structure
 
-TypeScript
+The complete project is maintained in a single Git repository:
 
-Tailwind CSS
-
-CRUD development
-
-CMS development
-
-File upload handling
-
-Email integration
-
-SEO
-
-Git/GitHub
-
-Full-stack architecture
-
-📌 Project Highlights
-
-Full-Stack Application
-
-Frontend, backend, database, authentication, CMS, and email
-functionality are combined into one complete application.
-
-Custom CMS
-
-The CMS was developed specifically for the portfolio instead of using an
-external CMS platform.
-
-REST Architecture
-
-The frontend communicates with the Spring Boot backend through REST
-APIs.
-
-Secure Authentication
-
-The admin panel uses JWT access tokens and refresh tokens for
-authenticated operations.
-
-Dynamic Content
-
-Portfolio content can be managed through the CMS and retrieved
-dynamically by the public website.
-
-📁 Repository Structure
-
-The complete application is maintained in one Git repository:
-
+```text
 portfolio-cms/
 │
 ├── frontend/
@@ -737,33 +811,35 @@ portfolio-cms/
 ├── pom.xml
 ├── README.md
 └── .gitignore
+```
 
-👤 Author
+This allows the complete application to be version-controlled and maintained from one repository.
 
-Rishu Barman
+---
+
+## 👤 Author
+
+**Rishu Barman**
 
 B.Tech Computer Science & Engineering
 
 Aspiring Java Developer focused on:
 
-Java
+- Java
+- Spring Boot
+- Backend Development
+- REST APIs
+- PostgreSQL
+- Software Engineering
 
-Spring Boot
+---
 
-Backend Development
-
-REST APIs
-
-PostgreSQL
-
-Software Engineering
-
-📜 License
+## 📜 License
 
 This project is created for personal portfolio and educational purposes.
 
-⭐ Acknowledgements
+---
 
-Built from scratch using modern full-stack technologies with a focus on
-practical backend development, custom CMS architecture, authentication,
-database integration, and production-oriented application design.
+## ⭐ Acknowledgements
+
+Built from scratch using modern full-stack technologies with a focus on practical backend development, custom CMS architecture, authentication, database integration, and production-oriented application design.
